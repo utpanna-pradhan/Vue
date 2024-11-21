@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--jquer cdn-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+    <!--external stylesheet link-->
+    <link rel="stylesheet" href="./style.css">
+    <title>HeartItOut</title>
+</head>
+<body class="bg-light">
+  <div class="shadow p-3 mb-5 bg-light rounded">
+    <img src="./img/logo.png" alt="" srcset="" class="logoimg rounded mx-auto d-block">
+  </div>
+  
+    <h2 class="section1_head text-center ">Sectioon I</h2>
+    
+    <div id="app">
+      <!----------------------------------section1------------------------------------------------------>
+        <!-- <label class="form-label">Lorem ipsum dolor sit amet</label> -->
+        <div class="section1_container">
+            <label class="form-check-label sec1_subhead fs-4" for="flexRadioDefault1" class="mb-4">
+                Lorem ipsum dolor sit amet
+              </label>
+            <div class="form-check mt-2">
+                
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label sec1_radiobtn" for="flexRadioDefault1">
+                 Radio button option
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexRadioDefault2">
+                  Radio button option
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexRadioDefault2">
+                  Radio button option
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexRadioDefault2">
+                  Radio button option
+                </label>
+              </div>
+
+                <!-- Dropdown -->
+              <div class="mb-4 mt-4">
+                  <label for="dropdown" class="form-label sec1_subhead">Lorem ipsum dolor sit amet</label>
+                    <select id="dropdown" class="form-select" v-model="selectedDropdown">
+                      <option v-for="(option, index) in dropdownOptions" :key="'dropdown-' + index" :value="option">
+                            {{ option }}
+                      </option>
+                    </select>
+              </div>
+
+              <!--checkbox-->
+              <label class="form-check-label sec1_subhead fs-4 mt-4 mb-3" for="flexRadioDefault1" class="mb-4">
+                Lorem ipsum dolor sit amet
+              </label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label sec1_radiobtn" for="flexCheckDefault">
+                  Radio button option
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexCheckChecked">
+                  Radio button option
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexCheckChecked">
+                  Radio button option
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label sec1_radiobtn" for="flexCheckChecked">
+                  Radio button option
+                </label>
+              </div>
+        </div>
+
+        <!-------------------------------------section2--------------------------------->
+        <h2 class="section3_head text-center pt-4 pb-4">Sectioon II</h2> 
+        <div class="dropdown-container">
+          <select class="form-select w-50 mx-auto section2_dropdown" v-model="selectedWord" @change="fetchShows(selectedWord)">
+            <option v-for="word in searchWords" :key="word" :value="word">
+              {{ word }}
+            </option>
+          </select>
+        </div> 
+         <!-- TV Shows  -->
+       
+         <div class="container-fluid section2_container mt-4">
+          <div class="row justify-content-center">
+            
+            <div class="col-md-3" v-for="(show, index) in tvShows" :key="index">
+              <!-- Show Type -->
+              <h5 class="text-center section2_type">{{ show.type }}</h5>
+        
+              <!-- TV Show Card -->
+              <div class="tv-show-card">
+                <!-- Show Name -->
+                <h5 class="text-center pb-4">{{ show.name }}</h5>
+        
+                <!-- Summary  -->
+                <div class="summary-container">
+                  <span v-html="show.summary"></span>
+                </div>
+                        <!-- Price -->
+                        <p class="text-center">Price:  <del>4999</del></p>
+                        <h4 class="text-center text-primary">4499</h4>
+
+        
+                <!-- Button -->
+                <a :href="show.url" target="_blank" :class="'btn-view btn-view-' + (index + 1) ">Click</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="mb-4 mt-4">
+         
+            <select class="form-select w-50 mx-auto section2_dropdown"v-model="selectedDropdown" @change="fetchShows(selectedWord)">
+              <option v-for="(option, index) in dropdownOptions" :key="'dropdown-' + index" :value="option">
+                    {{ option }}
+              </option>
+            </select>
+      </div>
+      <div class="mb-4 mt-4">
+         
+        <select class="form-select w-50 mx-auto section2_dropdown"v-model="selectedDropdown" @change="fetchShows(selectedWord)">
+          <option v-for="(option, index) in dropdownOptions" :key="'dropdown-' + index" :value="option">
+                {{ option }}
+          </option>
+        </select>
+  </div>
+      
+
+
+
+    
+         <!-------------------------------------section3 ------------------------->
+         <div class="section3_container">
+          <h2 class="section3_head text-center pt-4 pb-4">Sectioon III</h2>  
+          <div class="slider-container">
+            <span class="slider-nav left" @click="prevSlide">&#8249;</span>
+            <div>
+              <h5 class="mt-3 sec3_title">{{ slides[currentSlide].title }}</h5>
+              <div class="quote-icon"><img src="./img/Frame 1239.png" class="rounded float-start " alt=""></div>
+            <br /> <br />
+              <p class="section3_P">{{ slides[currentSlide].content }}</p>
+             
+              <div class="quote-icon"><img src="./img/Frame 1238.png" class="rounded float-end " alt=""></div>
+             
+            </div>
+            <span class="slider-nav right" @click="nextSlide">&#8250;</span>
+          </div>
+          <div class="slider-dots">
+            <span v-for="(slide, index) in slides" :key="index" :class="{ active: currentSlide === index }" @click="goToSlide(index)"></span>
+          </div>
+          <button class="slider-button d-flex justify-content-center  mt-4">Slider Button</button>
+         </div>
+       
+        
+ 
+    <div class="p-5 footer ">
+      <img src="./img/logo.png" alt="" srcset="" class="logoimg rounded mx-auto d-block">
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+   
+ 
+   
+    <script src="./script.js"></script>
+</body>
+</html>
