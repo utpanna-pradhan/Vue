@@ -68,8 +68,10 @@ const app = Vue.createApp({
 //sec2
       async fetchShows(word) {
         try {
-          const response = await fetch(`http://api.tvmaze.com/search/shows?q=${word}`);
-          // const response = await fetch(`https://cors-anywhere.herokuapp.com/https://api.tvmaze.com/search/shows?q=${word}`);
+         
+          const response = await fetch(`https://api.tvmaze.com/search/shows?q=${word}`);
+
+         
           const data = await response.json();
           this.tvShows = data.slice(0, 3).map((item) => ({
             name: item.show.name,
